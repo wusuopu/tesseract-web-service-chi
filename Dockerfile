@@ -1,13 +1,13 @@
 # 
 # Stand-alone tesseract-ocr web service in python.
+# Support language for Simplified Chinese
 # 
-# Version: 0.0.3 
-# Developed by Mark Peng (markpeng.ntu at gmail)
+# Version: 0.0.4
 # 
 
 FROM ubuntu:12.04
 
-MAINTAINER guitarmind
+MAINTAINER wusuopu
 
 RUN apt-get update && apt-get install -y \
   autoconf \
@@ -46,7 +46,12 @@ RUN cd ~/temp/ \
   && make install \
   && cd ~/local/share \
   && wget https://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.eng.tar.gz \
-  && tar xvf tesseract-ocr-3.02.eng.tar.gz
+  && tar xvf tesseract-ocr-3.02.eng.tar.gz \
+  && cd tesseract-ocr/tessdata \
+  && wget https://tesseract-ocr.googlecode.com/files/chi_sim.traineddata.gz \
+  && wget https://tesseract-ocr.googlecode.com/files/chi_tra.traineddata.gz \
+  && gzip -d chi_sim.traineddata.gz \
+  && gzip -d chi_tra.traineddata.gz
 
 ENV TESSDATA_PREFIX /root/local/share/tesseract-ocr
 
@@ -61,5 +66,5 @@ EXPOSE 1688
 
 WORKDIR /opt/ocr
 
-CMD ["python", "/opt/ocr/tesseractserver.py", "-p", "1688", "-b", "/root/local/lib", "-d", "/root/local/share/tesseract-ocr" ]
+CMD ["python", "/opt/ocr/tesseractserver.py", "-p", "1688", "-b", "/root/local/lib", "-d", "/root/local/share/tesseract-ocr", "-l", "eng+chi_sim" ]
 
