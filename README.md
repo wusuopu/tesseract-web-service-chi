@@ -1,6 +1,8 @@
 tesseract-web-service
 =====================
 
+##### fork from guitarmind/tesseract-web-service, and add Chinese support
+
 An implementation of RESTful web service for tesseract-OCR. The HTTP server is implemented using tornado. A [**Docker Container**](https://registry.hub.docker.com/u/guitarmind/tesseract-web-service/) has been created to let you run this service without any installation efforts!
 
 As of tesseract-ocr version 3.02.02, it provides a [C-API](https://code.google.com/p/tesseract-ocr/wiki/APIExample).
