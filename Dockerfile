@@ -66,5 +66,5 @@ EXPOSE 1688
 
 WORKDIR /opt/ocr
 
-CMD ["python", "/opt/ocr/tesseractserver.py", "-p", "1688", "-b", "/root/local/lib", "-d", "/root/local/share/tesseract-ocr", "-l", "eng+chi_sim" ]
+CMD ["python", "/opt/ocr/tesseractserver.py", "-p", "1688", "-b", "/root/local/lib", "-d", "/root/local/share/tesseract-ocr", "-l", "chi_sim" ]
 
